@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 
 app.use(express.json());
+
 app.use(express.static('public'));
 
 app.get('/api', (req, res) => {
   res.send('API de productos funcionando');
 });
 
+app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/productos', require('./src/routes/productos'));
 
 // Middleware para rutas que no existen
